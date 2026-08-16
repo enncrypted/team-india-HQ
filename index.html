@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team India Fan HQ</title>
+    
+    <!-- Google Fonts: Teko, Manrope, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Manrope:wght@300;400;600;800&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="navbar-container">
+            <div class="logo">
+                <div class="logo-icon">IN</div>
+                <div class="logo-text">
+                    <span class="logo-title">TEAM INDIA FAN HQ</span>
+                    <span class="logo-subtitle">UNOFFICIAL SUPPORTERS HUB</span>
+                </div>
+            </div>
+            
+            <button class="hamburger" aria-expanded="false" aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <nav id="nav-links" class="nav-links">
+                <a href="#squad">Squad</a>
+                <a href="#trophies">Trophies</a>
+                <a href="#rankings">Rankings</a>
+                <a href="#fixtures">Fixtures</a>
+                <a href="#fan-zone">Fan Zone</a>
+                <a href="#join">Join</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="section-hero">
+            <div class="hero-container container">
+                
+                <div class="hero-left">
+                    <div class="hero-eyebrow">EST. 1932 &bull; 6 ICC TITLES</div>
+                    <h1 class="hero-title">BLEED<br><span class="text-saffron">BLUE</span><br>EVERY BALL</h1>
+                    <p class="hero-subtitle">The unofficial home for Team India supporters — squad profiles, the trophy cabinet, live countdowns to every fixture, and a fan zone built for match days.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#squad" class="btn btn-primary">Explore the squad &rarr;</a>
+                        <a href="#join" class="btn btn-secondary">Get your fan card</a>
+                    </div>
+                    
+                    <div class="hero-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">WORLD CUPS</div>
+                            <div class="stat-value">6</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">TEST RANK</div>
+                            <div class="stat-value">#1</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">WIN % (2024-26)</div>
+                            <div class="stat-value">72</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">SQUAD SIZE</div>
+                            <div class="stat-value">12</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="fixture-card-large">
+                        <div class="fixture-header">
+                            <span class="fixture-label">NEXT FIXTURE</span>
+                            <span class="badge-live"><span class="dot"></span> Countdown live</span>
+                        </div>
+                        <div class="fixture-teams">
+                            <div class="team team-india">INDIA<div class="team-role">HOME</div></div>
+                            <div class="vs">VS</div>
+                            <div class="team team-opp">AUSTRALIA<div class="team-role">AWAY</div></div>
+                        </div>
+                        <div class="fixture-venue">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            3rd ODI &bull; Narendra Modi Stadium, Ahmedabad
+                        </div>
+                        <div class="fixture-date">TUE, AUG 25</div>
+                        
+                        <div class="countdown-boxes" id="hero-countdown">
+                            <div class="time-box"><div class="time-num" id="cd-days">08</div><div class="time-label">DAYS</div></div>
+                            <div class="time-box"><div class="time-num" id="cd-hrs">20</div><div class="time-label">HRS</div></div>
+                            <div class="time-box"><div class="time-num" id="cd-min">37</div><div class="time-label">MIN</div></div>
+                            <div class="time-box"><div class="time-num" id="cd-sec">29</div><div class="time-label">SEC</div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- News Ticker -->
+        <div class="news-ticker">
+            <div class="ticker-badge">LATEST</div>
+            <div class="ticker-content">
+                <span>Bumrah rested for the final ODI as workload plan kicks in</span>
+                <span class="ticker-separator">&diams;</span>
+                <span>Gill named vice-captain across white-ball formats</span>
+                <span class="ticker-separator">&diams;</span>
+                <span>Jaiswal's double ton headlines record opening stand</span>
+            </div>
+        </div>
+
+        <!-- Squad Section -->
+        <section id="squad" class="section-squad container">
+            <div class="section-header">
+                <div class="section-eyebrow text-saffron">THE XI AND BEYOND</div>
+                <h2 class="section-title">SQUAD</h2>
+                <p class="section-desc">Filter by role and flip any card for the fan file.</p>
+            </div>
+            
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Players</button>
+                <button class="filter-btn" data-filter="batter">Batters</button>
+                <button class="filter-btn" data-filter="bowler">Bowlers</button>
+                <button class="filter-btn" data-filter="all-rounder">All-Rounders</button>
+                <button class="filter-btn" data-filter="wicketkeeper">Wicketkeepers</button>
+            </div>
+            
+            <div class="squad-grid" id="squad-grid">
+                <!-- Javascript will inject cards here -->
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Trophies Section -->
+        <section id="trophies" class="container">
+            <div class="fixture-list-item">
+                <div class="fl-icon">&#128197;</div>
+                <div class="fl-details">
+                    <h3>PATAUDI TROPHY</h3>
+                    <p>vs England &bull; 5 Tests &bull; England</p>
+                </div>
+                <div class="fl-countdown">
+                    <span>STARTS IN</span>
+                    <strong class="text-saffron">140d 16h 37m</strong>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Fan Zone Section -->
+        <section id="fan-zone" class="section-fanzone container">
+            <div class="section-header">
+                <div class="section-eyebrow text-saffron">FOR THE STANDS</div>
+                <h2 class="section-title">FAN ZONE <span class="gradient-line"></span></h2>
+                <p class="section-desc">Vote, quiz yourself, and settle the group-chat arguments.</p>
+            </div>
+
+            <div class="grid-2col">
+                <!-- Fan Poll -->
+                <div class="card-sleek">
+                    <div class="card-eyebrow">FAN POLL</div>
+                    <h3 class="card-title">PLAYER OF THE SERIES?</h3>
+                    <form id="pollForm" class="sleek-form">
+                        <label class="radio-btn"><input type="radio" name="potm" value="vk"> Virat Kohli</label>
+                        <label class="radio-btn"><input type="radio" name="potm" value="jb"> Jasprit Bumrah</label>
+                        <label class="radio-btn"><input type="radio" name="potm" value="rp"> Rishabh Pant</label>
+                        <label class="radio-btn"><input type="radio" name="potm" value="sg"> Shubman Gill</label>
+                    </form>
+                    <div class="card-footer-note">YOUR VOTE IS SAVED IN THIS BROWSER</div>
+                </div>
+
+                <!-- Cricket Quiz -->
+                <div class="card-sleek">
+                    <div class="quiz-header">
+                        <div class="card-eyebrow">CRICKET QUIZ</div>
+                        <div class="quiz-progress text-saffron">1/5</div>
+                    </div>
+                    <h3 class="card-title" id="quiz-question">WHO HIT THE WINNING SIX IN THE 2011 WORLD CUP FINAL?</h3>
+                    <div id="quiz-options" class="sleek-form">
+                        <button class="radio-btn">MS Dhoni</button>
+                        <button class="radio-btn">Yuvraj Singh</button>
+                        <button class="radio-btn">Gautam Gambhir</button>
+                        <button class="radio-btn">Virat Kohli</button>
+                    </div>
+                    <div class="quiz-footer">
+                        <span class="quiz-status">Pick an answer</span>
+                        <button class="btn btn-secondary btn-small">Next</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Join the Squad -->
+        <section id="join" class="section-join container">
+            <div class="section-header">
+                <div class="section-eyebrow text-saffron">MEMBERSHIP</div>
+                <h2 class="section-title">JOIN THE SQUAD <span class="gradient-line"></span></h2>
+                <p class="section-desc">Generate your fan card. It stays saved in this browser.</p>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card-sleek">
+                    <form id="joinForm">
+                        <div class="input-group">
+                            <label>YOUR NAME</label>
+                            <input type="text" id="fan-name" placeholder="e.g. Ananya Rao" required>
+                        </div>
+                        <div class="input-group">
+                            <label>FAVOURITE PLAYER</label>
+                            <select id="fan-player" required>
+                                <option>Rohit Sharma</option>
+                                <option>Virat Kohli</option>
+                                <option>Jasprit Bumrah</option>
+                                <option>Rishabh Pant</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Generate my fan card</button>
+                    </form>
+                </div>
+                
+                <div class="card-sleek card-placeholder" id="membership-card">
+                    <p class="placeholder-text">Your membership card will appear here once you fill the form.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <h4>TEAM INDIA FAN HQ</h4>
+            <p>An unofficial fan-made project. All statistics shown are placeholder data for demonstration.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
