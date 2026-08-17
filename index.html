@@ -86,13 +86,13 @@
                         <div class="fixture-teams">
                             <div class="team team-india">INDIA<div class="team-role">HOME</div></div>
                             <div class="vs">VS</div>
-                            <div class="team team-opp">AUSTRALIA<div class="team-role">AWAY</div></div>
+                            <div class="team team-opp" id="hero-opp-name">AUSTRALIA<div class="team-role">AWAY</div></div>
                         </div>
-                        <div class="fixture-venue">
+                        <div class="fixture-venue" id="hero-venue">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            3rd ODI &bull; Narendra Modi Stadium, Ahmedabad
+                            <span>Loading venue...</span>
                         </div>
-                        <div class="fixture-date">TUE, AUG 25</div>
+                        <div class="fixture-date" id="hero-date">LOADING DATE...</div>
                         
                         <div class="countdown-boxes" id="hero-countdown">
                             <div class="time-box"><div class="time-num" id="cd-days">08</div><div class="time-label">DAYS</div></div>
@@ -117,6 +117,33 @@
                 <span>Jaiswal's double ton headlines record opening stand</span>
             </div>
         </div>
+
+        <!-- Recent Results Section -->
+        <section id="recent-results" class="section-recent container">
+            <div class="section-header">
+                <div class="section-eyebrow text-saffron">MATCH HISTORY</div>
+                <h2 class="section-title">RECENT RESULTS</h2>
+                <p class="section-desc">India's latest performances on the world stage.</p>
+            </div>
+            
+            <div class="grid-2col">
+                <div class="card-sleek">
+                    <h3 class="card-title">LAST 5 MATCHES (OVERALL)</h3>
+                    <div id="results-overall" class="results-list">
+                        <p class="text-muted">Loading match data...</p>
+                    </div>
+                </div>
+                
+                <div class="card-sleek">
+                    <h3 class="card-title">LAST 5 MATCHES (VS <span id="results-opp-name">OPPONENT</span>)</h3>
+                    <div id="results-vs-opp" class="results-list">
+                        <p class="text-muted">Loading match data...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
 
         <!-- Squad Section -->
         <section id="squad" class="section-squad container">

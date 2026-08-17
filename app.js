@@ -1,14 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Countdown Timer Logic
-    const countdownTarget = new Date('2027-08-25T14:30:00Z').getTime(); // Example date
+    // 1. API Integration & Dynamic Countdown
+    const API_KEY = "YOUR_API_KEY_HERE"; // Replace with your cricketdata.org API key
+    let countdownTarget = null;
+    let nextMatchOpponent = "OPPONENT";
     
     const dEl = document.getElementById('cd-days');
     const hEl = document.getElementById('cd-hrs');
     const mEl = document.getElementById('cd-min');
     const sEl = document.getElementById('cd-sec');
 
+    // Hero Section Elements
+    const heroOppName = document.getElementById('hero-opp-name');
+    const heroVenue = document.getElementById('hero-venue');
+    const heroDate = document.getElementById('hero-date');
+
+    // Recent Results Elements
+    const resultsOverall = document.getElementById('results-overall');
+    const resultsVsOpp = document.getElementById('results-vs-opp');
+    const resultsOppName = document.getElementById('results-opp-name');
+
     function updateCountdown() {
+        if (!countdownTarget) return;
+
         const now = new Date().getTime();
         const distance = countdownTarget - now;
 
@@ -32,7 +46,111 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setInterval(updateCountdown, 1000);
-    updateCountdown();
+
+    async function fetchMatchData() {
+        if (API_KEY === "YOUR_API_KEY_HERE") {
+            handleApiError("API key not configured.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api.cricapi.com/v1/matches?apikey=${API_KEY}&offset=0`);
+            const data = await response.json();
+
+            if (data.status !== "success") {
+                throw new Error(data.reason || "Failed to fetch data");
+            }
+
+            processMatchData(data.data);
+        } catch (error) {
+            console.error("API Error:", error);
+            handleApiError(error.message);
+        }
+    }
+
+    function processMatchData(matches) {
+        // Filter matches involving India
+        const indiaMatches = matches.filter(m => 
+            m.teams && (m.teams.includes("India") || m.teams.includes("India Men"))
+        );
+
+        const now = new Date();
+        
+        // Find upcoming matches
+        const upcomingMatches = indiaMatches.filter(m => new Date(m.dateTimeGMT + "Z") > now)
+                                            .sort((a, b) => new Date(a.dateTimeGMT + "Z") - new Date(b.dateTimeGMT + "Z"));
+        
+        // Find past matches
+        const pastMatches = indiaMatches.filter(m => new Date(m.dateTimeGMT + "Z") <= now && m.matchEnded)
+                                        .sort((a, b) => new Date(b.dateTimeGMT + "Z") - new Date(a.dateTimeGMT + "Z")); // Descending
+
+        // 1. Populate Hero Section (Next Match)
+        if (upcomingMatches.length > 0) {
+            const nextMatch = upcomingMatches[0];
+            const isIndiaHome = nextMatch.teams[0].includes("India");
+            const oppName = isIndiaHome ? nextMatch.teams[1] : nextMatch.teams[0];
+            nextMatchOpponent = oppName;
+
+            heroOppName.innerHTML = `${oppName.toUpperCase()}<div class="team-role">${isIndiaHome ? "AWAY" : "HOME"}</div>`;
+            heroVenue.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> ${nextMatch.matchType.toUpperCase()} &bull; ${nextMatch.venue}`;
+            
+            const matchDateObj = new Date(nextMatch.dateTimeGMT + "Z");
+            const options = { weekday: 'short', month: 'short', day: 'numeric' };
+            heroDate.innerText = matchDateObj.toLocaleDateString('en-US', options).toUpperCase();
+            
+            countdownTarget = matchDateObj.getTime();
+            updateCountdown();
+
+            resultsOppName.innerText = oppName.toUpperCase();
+        } else {
+            heroDate.innerText = "NO UPCOMING FIXTURES";
+            heroVenue.innerHTML = "<span>Check back later</span>";
+        }
+
+        // 2. Populate Recent Results (Overall)
+        renderResultsList(resultsOverall, pastMatches.slice(0, 5));
+
+        // 3. Populate Recent Results (Vs Opponent)
+        if (nextMatchOpponent !== "OPPONENT") {
+            const vsOppMatches = pastMatches.filter(m => m.teams.includes(nextMatchOpponent));
+            renderResultsList(resultsVsOpp, vsOppMatches.slice(0, 5));
+        }
+    }
+
+    function renderResultsList(container, matches) {
+        container.innerHTML = "";
+        if (matches.length === 0) {
+            container.innerHTML = '<p class="text-muted">No recent results found.</p>';
+            return;
+        }
+
+        matches.forEach(m => {
+            const matchDate = new Date(m.dateTimeGMT + "Z").toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const item = document.createElement('div');
+            item.className = 'result-item';
+            item.innerHTML = `
+                <div>
+                    <div class="result-teams">${m.name}</div>
+                    <div class="result-score">${m.status}</div>
+                </div>
+                <div>
+                    <div class="result-date">${matchDate}</div>
+                    <div class="result-status">${m.matchType.toUpperCase()}</div>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    function handleApiError(msg) {
+        heroDate.innerText = "API UNAVAILABLE";
+        heroVenue.innerHTML = `<span>${msg}</span>`;
+        resultsOverall.innerHTML = `<p class="text-muted">Cannot load results: ${msg}</p>`;
+        resultsVsOpp.innerHTML = `<p class="text-muted">Cannot load results: ${msg}</p>`;
+    }
+
+    // Initialize
+    fetchMatchData();
 
     // 2. Squad Data & Rendering
     const squadData = [
